@@ -243,7 +243,7 @@ ELSE(DYNAMIC_OPENSCENEGRAPH)
     #needed on win32 or the linker get confused by _declspec declarations
     ADD_DEFINITIONS(-DOSG_LIBRARY_STATIC)
 
-    # IPHONE_PORT@tom    
+    # IPHONE_PORT@tom
     IF(OSG_BUILD_PLATFORM_IPHONE OR OSG_BUILD_PLATFORM_IPHONE_SIMULATOR)
         ADD_SUBDIRECTORY(osgviewerIPhone)
     ELSEIF(OSG_BUILD_PLATFORM_UWP)

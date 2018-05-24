@@ -41,7 +41,7 @@ namespace example_osgViewerUWP
 
         bool mWindowClosed;
         bool mWindowVisible;
-        
+
         EGLDisplay mEglDisplay;
         EGLContext mEglContext;
         EGLSurface mEglSurface;

@@ -40,7 +40,7 @@ using namespace example_osgViewerUWP;
 class FindParticleSystem : public osg::NodeVisitor
 {
 public:
-	FindParticleSystem() 
+	FindParticleSystem()
 		: osg::NodeVisitor(NodeVisitor::TRAVERSE_ALL_CHILDREN)
 	{}
 	virtual ~FindParticleSystem() {}
@@ -93,7 +93,7 @@ void App::Initialize(CoreApplicationView^ applicationView)
 {
     // Register event handlers for app lifecycle. This example includes Activated, so that we
     // can make the CoreWindow active and start rendering on the window.
-    applicationView->Activated += 
+    applicationView->Activated +=
         ref new TypedEventHandler<CoreApplicationView^, IActivatedEventArgs^>(this, &App::OnActivated);
 
     // Logic for other event handlers could go here.
@@ -290,7 +290,7 @@ void App::TransformMouseXY(float& x, float& y, float width, float height)
 
 void App::InitializeEGL(CoreWindow^ window)
 {
-    const EGLint configAttributes[] = 
+    const EGLint configAttributes[] =
     {
         EGL_RED_SIZE, 8,
         EGL_GREEN_SIZE, 8,
@@ -301,9 +301,9 @@ void App::InitializeEGL(CoreWindow^ window)
         EGL_NONE
     };
 
-    const EGLint contextAttributes[] = 
-    { 
-        EGL_CONTEXT_CLIENT_VERSION, 2, 
+    const EGLint contextAttributes[] =
+    {
+        EGL_CONTEXT_CLIENT_VERSION, 2,
         EGL_NONE
     };
 
@@ -324,14 +324,14 @@ void App::InitializeEGL(CoreWindow^ window)
         // EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER is an optimization that can have large performance benefits on mobile devices.
         // Its syntax is subject to change, though. Please update your Visual Studio templates if you experience compilation issues with it.
         EGL_ANGLE_DISPLAY_ALLOW_RENDER_TO_BACK_BUFFER, EGL_TRUE,
-        
-        // EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE is an option that enables ANGLE to automatically call 
-        // the IDXGIDevice3::Trim method on behalf of the application when it gets suspended. 
+
+        // EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE is an option that enables ANGLE to automatically call
+        // the IDXGIDevice3::Trim method on behalf of the application when it gets suspended.
         // Calling IDXGIDevice3::Trim when an application is suspended is a Windows Store application certification requirement.
         EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
         EGL_NONE,
     };
-    
+
     const EGLint fl9_3DisplayAttributes[] =
     {
         // These can be used to request ANGLE's D3D11 renderer, with D3D11 Feature Level 9_3.
@@ -354,7 +354,7 @@ void App::InitializeEGL(CoreWindow^ window)
         EGL_PLATFORM_ANGLE_ENABLE_AUTOMATIC_TRIM_ANGLE, EGL_TRUE,
         EGL_NONE,
     };
-    
+
     EGLConfig config = NULL;
 
     // eglGetPlatformDisplayEXT is an alternative to eglGetDisplay. It allows us to pass in display attributes, used to configure D3D11.
@@ -365,15 +365,15 @@ void App::InitializeEGL(CoreWindow^ window)
     }
 
     //
-    // To initialize the display, we make three sets of calls to eglGetPlatformDisplayEXT and eglInitialize, with varying 
+    // To initialize the display, we make three sets of calls to eglGetPlatformDisplayEXT and eglInitialize, with varying
     // parameters passed to eglGetPlatformDisplayEXT:
     // 1) The first calls uses "defaultDisplayAttributes" as a parameter. This corresponds to D3D11 Feature Level 10_0+.
-    // 2) If eglInitialize fails for step 1 (e.g. because 10_0+ isn't supported by the default GPU), then we try again 
+    // 2) If eglInitialize fails for step 1 (e.g. because 10_0+ isn't supported by the default GPU), then we try again
     //    using "fl9_3DisplayAttributes". This corresponds to D3D11 Feature Level 9_3.
-    // 3) If eglInitialize fails for step 2 (e.g. because 9_3+ isn't supported by the default GPU), then we try again 
+    // 3) If eglInitialize fails for step 2 (e.g. because 9_3+ isn't supported by the default GPU), then we try again
     //    using "warpDisplayAttributes".  This corresponds to D3D11 Feature Level 11_0 on WARP, a D3D11 software rasterizer.
     //
-    
+
     // This tries to initialize EGL to D3D11 Feature Level 10_0+. See above comment for details.
     mEglDisplay = eglGetPlatformDisplayEXT(EGL_PLATFORM_ANGLE_ANGLE, EGL_DEFAULT_DISPLAY, defaultDisplayAttributes);
     if (mEglDisplay == EGL_NO_DISPLAY)
@@ -417,7 +417,7 @@ void App::InitializeEGL(CoreWindow^ window)
     PropertySet^ surfaceCreationProperties = ref new PropertySet();
     surfaceCreationProperties->Insert(ref new String(EGLNativeWindowTypeProperty), window);
 
-    // You can configure the surface to render at a lower resolution and be scaled up to 
+    // You can configure the surface to render at a lower resolution and be scaled up to
     // the full window size. The scaling is often free on mobile hardware.
     //
     // One way to configure the SwapChainPanel is to specify precisely which resolution it should render at.
