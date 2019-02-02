@@ -688,6 +688,8 @@ void Geometry::dirtyGLObjects()
 {
     Drawable::dirtyGLObjects();
 
+  if (_useVertexBufferObjects) // or comment all the block ??? // MT 02/02/19
+  {
     ArrayList arrays;
     if (getArrayList(arrays))
     {
@@ -709,6 +711,7 @@ void Geometry::dirtyGLObjects()
             (*itr)->dirty();
         }
     }
+  }
 }
 
 void Geometry::resizeGLObjectBuffers(unsigned int maxSize)
