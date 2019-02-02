@@ -688,7 +688,8 @@ void Geometry::dirtyGLObjects()
 {
     Drawable::dirtyGLObjects();
 
-  if (_useVertexBufferObjects) // or comment all the block ??? // MT 02/02/19
+  if (_useVertexBufferObjects) // or comment all the block ??? // MT 02/02/19 // or maybe take this file instead :
+  // https://github.com/mtola/OpenSceneGraph/blob/232d0468cfc9c48aea1adf491844c49e88dcc264/src/osg/Geometry.cpp
   {
     ArrayList arrays;
     if (getArrayList(arrays))
